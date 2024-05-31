@@ -106,11 +106,11 @@ port_to_port() {
     echo "Local Tunnel ipv6 to ipv4"
     publicIP=$(hostname -I | awk '{print $1}')
     PS3='Your current session is? '
-    options=("Config KharejIP" "Config IranIP" "Reset Network" "Back")
+    options=("Iran" "kharej" "Reset Network" "Back")
     select opt in "${options[@]}"; do
         case $opt in
-        "Config IranIP")
-            read -p "Server Kharej IP: " ip
+        "Iran")
+            read -p "Enter Dest(kharej) IP: " ip
             # Clean last tunnel
             ip tunnel del 6to4_To_KH >/dev/null 2>&1
             ip -6 tunnel del ipip6Tun_To_KH >/dev/null 2>&1
@@ -128,8 +128,8 @@ port_to_port() {
             menu
             break
             ;;
-        "Config KharejIP")
-            read -p "Server Iran IP: " ip
+        "kharej")
+            read -p "Enter Target(Iran) IP: " ip
             # Clean last tunnel
             ip tunnel del 6to4_To_IR >/dev/null 2>&1
             ip -6 tunnel del ipip6Tun_To_IR >/dev/null 2>&1

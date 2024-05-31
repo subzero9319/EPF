@@ -106,7 +106,7 @@ port_to_port() {
     echo "Local Tunnel ipv6 to ipv4"
     publicIP=$(hostname -I | awk '{print $1}')
     PS3='Your current session is? '
-    options=("KharejIP" "IranIP" "Reset Network" "Back")
+    options=("Config KharejIP" "Config IranIP" "Reset Network" "Back")
     select opt in "${options[@]}"; do
         case $opt in
         "Config IranIP")

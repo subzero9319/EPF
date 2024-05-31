@@ -110,7 +110,7 @@ port_to_port() {
     select opt in "${options[@]}"; do
         case $opt in
         "IranIP")
-            read -p "Enter Dest(receiver) IP: " ip
+            read -p "IP Server Kharej: " ip
             # Clean last tunnel
             ip tunnel del 6to4_To_KH >/dev/null 2>&1
             ip -6 tunnel del ipip6Tun_To_KH >/dev/null 2>&1
@@ -129,7 +129,7 @@ port_to_port() {
             break
             ;;
         "KharejIP")
-            read -p "Enter Target(sender) IP: " ip
+            read -p "IP Server Iran: " ip
             # Clean last tunnel
             ip tunnel del 6to4_To_IR >/dev/null 2>&1
             ip -6 tunnel del ipip6Tun_To_IR >/dev/null 2>&1

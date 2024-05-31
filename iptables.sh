@@ -120,14 +120,9 @@ port_to_port() {
             ip link set 6to4_To_KH mtu 1480
             ip link set 6to4_To_KH up
             ip -6 tunnel add ipip6Tun_To_KH mode ipip6 remote fc00::2 local fc00::1
-            ip addr add 192.168.13.1/30 dev ipip6Tun_To_KH
+            ip addr add 10.10.15.1/30 dev ipip6Tun_To_KH
             ip link set ipip6Tun_To_KH mtu 1440
             ip link set ipip6Tun_To_KH up
-            sysctl net.ipv4.ip_forward=1 >/dev/null 2>&1
-            iptables -t nat -A PREROUTING -p tcp --dport 22 -j DNAT --to-destination 192.168.13.1
-            iptables -t nat -A PREROUTING -j DNAT --to-destination 192.168.13.2
-            interface=$(route | grep '^default' | grep -o '[^ ]*$')
-            iptables -t nat -A POSTROUTING -j MASQUERADE
             echo "IP $publicIP moved to $ip"
             sleep 3
             menu
@@ -144,7 +139,7 @@ port_to_port() {
             ip link set 6to4_To_IR mtu 1480
             ip link set 6to4_To_IR up
             ip -6 tunnel add ipip6Tun_To_IR mode ipip6 remote fc00::1 local fc00::2
-            ip addr add 192.168.13.2/30 dev ipip6Tun_To_IR
+            ip addr add 10.10.15.2/30 dev ipip6Tun_To_IR
             ip link set ipip6Tun_To_IR mtu 1440
             ip link set ipip6Tun_To_IR up
             echo "IP $publicIP moved to $ip"
